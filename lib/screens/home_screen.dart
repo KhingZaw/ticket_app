@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ticket_app/constants/app_styles.dart';
 import 'package:ticket_app/constants/media.dart';
+import 'package:ticket_app/data/all_json.dart';
 import 'package:ticket_app/widgets/app_double_text.dart';
+import 'package:ticket_app/widgets/ticket_view.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -47,7 +49,7 @@ class HomeScreen extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                   width: double.infinity,
-                  height: 40,
+                  height: 45,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                     color: Colors.white,
@@ -74,6 +76,18 @@ class HomeScreen extends StatelessWidget {
                   bigText: 'Upcoming Flights',
                   smallText: 'View all',
                 ),
+                const SizedBox(
+                  height: 15,
+                ),
+                SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                        children: ticketList
+                            .take(3)
+                            .map((e) => TicketView(
+                                  ticket: e,
+                                ))
+                            .toList()))
               ],
             ),
           ]),
