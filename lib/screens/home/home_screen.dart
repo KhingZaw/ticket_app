@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:ticket_app/constants/app_styles.dart';
 import 'package:ticket_app/constants/media.dart';
 import 'package:ticket_app/data/all_json.dart';
-import 'package:ticket_app/widgets/app_double_text.dart';
-import 'package:ticket_app/widgets/ticket_view.dart';
+import 'package:ticket_app/reusable_widgets/app_double_text.dart';
+import 'package:ticket_app/screens/home/widgets/hotel.dart';
+import 'package:ticket_app/screens/home/widgets/ticket_view.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -16,6 +17,7 @@ class HomeScreen extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(15, 50, 15, 0),
           children: [
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -72,22 +74,42 @@ class HomeScreen extends StatelessWidget {
                   height: 20,
                 ),
                 //AppDoubleText
-                const AppDoubleText(
+                AppDoubleText(
                   bigText: 'Upcoming Flights',
                   smallText: 'View all',
+                  func: () => Navigator.pushNamed(context, "/all-tickets"),
                 ),
                 const SizedBox(
                   height: 15,
                 ),
                 SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                        children: ticketList
-                            .take(3)
-                            .map((e) => TicketView(
-                                  ticket: e,
-                                ))
-                            .toList()))
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                      children: ticketList
+                          .take(3)
+                          .map((e) => TicketView(
+                                ticket: e,
+                              ))
+                          .toList()),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                //AppDoubleText
+                AppDoubleText(
+                  bigText: 'Hotels',
+                  smallText: 'View all',
+                  func: () => Navigator.pushNamed(context, "/search-screen"),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: hotelList.map((e) => Hotel(hotel: e)).toList(),
+                  ),
+                ),
               ],
             ),
           ]),

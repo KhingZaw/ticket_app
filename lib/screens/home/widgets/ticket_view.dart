@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:ticket_app/constants/app_styles.dart';
-import 'package:ticket_app/widgets/app_layout_builder.dart';
-import 'package:ticket_app/widgets/big_circle.dart';
-import 'package:ticket_app/widgets/big_dot.dart';
-import 'package:ticket_app/widgets/text_style_fourth.dart';
-import 'package:ticket_app/widgets/text_style_third.dart';
+import 'package:ticket_app/reusable_widgets/app_layout_builder.dart';
+import 'package:ticket_app/reusable_widgets/big_circle.dart';
+import 'package:ticket_app/reusable_widgets/big_dot.dart';
+import 'package:ticket_app/reusable_widgets/text_style_fourth.dart';
+import 'package:ticket_app/reusable_widgets/text_style_third.dart';
 
 class TicketView extends StatelessWidget {
   final Map<String, dynamic> ticket;
-  const TicketView({super.key, required this.ticket});
+  final bool wholeScreen;
+  const TicketView({super.key, required this.ticket, this.wholeScreen = false});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class TicketView extends StatelessWidget {
       width: size.width * 0.85,
       height: 189,
       child: Container(
-        margin: const EdgeInsets.only(right: 16),
+        margin: EdgeInsets.only(right: wholeScreen == true ? 0 : 16),
         child: Column(
           children: [
             //blue part of the ticket
