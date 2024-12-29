@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ticket_app/app_routers.dart';
 import 'package:ticket_app/constants/app_styles.dart';
 import 'package:ticket_app/constants/media.dart';
 import 'package:ticket_app/data/all_json.dart';
@@ -14,7 +15,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppStyles.bgColor,
       body: ListView(
-          padding: const EdgeInsets.fromLTRB(15, 50, 15, 0),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 40),
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,7 +78,8 @@ class HomeScreen extends StatelessWidget {
                 AppDoubleText(
                   bigText: 'Upcoming Flights',
                   smallText: 'View all',
-                  func: () => Navigator.pushNamed(context, "/all-tickets"),
+                  func: () =>
+                      Navigator.pushNamed(context, AppRouters.allTickets),
                 ),
                 const SizedBox(
                   height: 15,

@@ -18,7 +18,7 @@ class AppDoubleText extends StatelessWidget {
       children: [
         Text(
           bigText,
-          style: AppStyles.headLineStyle2,
+          style: AppStyles.headLineStyle1,
         ),
         InkWell(
           onTap: func,

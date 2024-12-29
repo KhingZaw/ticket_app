@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:ticket_app/constants/app_styles.dart';
+import 'package:ticket_app/reusable_widgets/app_double_text.dart';
+import 'package:ticket_app/screens/search/widgets/app_text_icon.dart';
+import 'package:ticket_app/reusable_widgets/app_ticket_tap.dart';
+import 'package:ticket_app/screens/search/widgets/find_tickets.dart';
+import 'package:ticket_app/screens/search/widgets/ticket_promotion.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -6,7 +12,51 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: AppStyles.bgColor,
+      body: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 40),
+        children: [
+          Text("What are\nyou looking for?",
+              style: AppStyles.headLineStyle1.copyWith(fontSize: 32)),
+          const SizedBox(
+            height: 20,
+          ),
+          const AppTicketTap(
+            firstTap: 'All Tickets',
+            secondTap: 'Hotels',
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          const AppTextIcon(
+            text: 'Departure',
+            icon: Icons.flight_takeoff_rounded,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          const AppTextIcon(
+            text: 'Arrival',
+            icon: Icons.flight_land_rounded,
+          ),
+          const SizedBox(
+            height: 25,
+          ),
+          const FindTickets(),
+          const SizedBox(
+            height: 40,
+          ),
+          AppDoubleText(
+            bigText: 'Upcoming Flights',
+            smallText: 'View all',
+            func: () => Navigator.pushNamed(context, "/all-tickets"),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          const TicketPromotion(),
+        ],
+      ),
     );
   }
 }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ticket_app/app_routers.dart';
 import 'package:ticket_app/bottom_navbar.dart';
 import 'package:ticket_app/screens/home/all_tickets.dart';
-import 'package:ticket_app/screens/search/search_screen.dart';
+import 'package:ticket_app/screens/ticket/ticket_screen.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -18,9 +19,9 @@ class TicketApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        "/": (context) => const BottomNavbar(),
-        "/all-tickets": (context) => const AllTickets(),
-        "/search-screen": (context) => const SearchScreen(),
+        AppRouters.homePage: (context) => const BottomNavbar(),
+        AppRouters.allTickets: (context) => const AllTickets(),
+        AppRouters.ticketScreen: (context) => const TicketScreen(),
       },
     );
   }
