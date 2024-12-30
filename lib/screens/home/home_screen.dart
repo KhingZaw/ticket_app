@@ -26,7 +26,10 @@ class HomeScreen extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text("Good morning"),
+                        Text(
+                          "Good morning",
+                          style: AppStyles.headLineStyle3,
+                        ),
                         Text(
                           "Book Tickets",
                           style: AppStyles.headLineStyle1,
@@ -101,7 +104,8 @@ class HomeScreen extends StatelessWidget {
                 AppDoubleText(
                   bigText: 'Hotels',
                   smallText: 'View all',
-                  func: () => Navigator.pushNamed(context, "/search-screen"),
+                  func: () =>
+                      Navigator.pushNamed(context, AppRouters.hotelScreen),
                 ),
                 const SizedBox(
                   height: 20,

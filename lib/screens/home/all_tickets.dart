@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ticket_app/app_routers.dart';
+import 'package:ticket_app/constants/app_styles.dart';
 import 'package:ticket_app/data/all_json.dart';
 import 'package:ticket_app/screens/home/widgets/ticket_view.dart';
 
@@ -9,9 +10,14 @@ class AllTickets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppStyles.bgColor,
       appBar: AppBar(
-        title: const Text("All Tickets"),
+        title: Text(
+          "All Tickets",
+          style: AppStyles.headLineStyle1,
+        ),
         centerTitle: true,
+        backgroundColor: AppStyles.bgColor,
       ),
       body: ListView(
         children: [

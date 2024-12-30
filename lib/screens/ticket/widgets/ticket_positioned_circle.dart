@@ -10,7 +10,7 @@ class TicketPositionedCircle extends StatelessWidget {
     return Positioned(
       left: pos == null ? 20 : null,
       right: pos == null ? null : 20,
-      top: 235,
+      top: 130,
       child: Container(
         padding: const EdgeInsets.all(3),
         decoration: BoxDecoration(

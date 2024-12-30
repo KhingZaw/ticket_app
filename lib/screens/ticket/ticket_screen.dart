@@ -38,8 +38,10 @@ class _TicketScreenState extends State<TicketScreen> {
     return Scaffold(
       backgroundColor: AppStyles.bgColor,
       appBar: AppBar(
-        title: const Text('Tickets'),
-        centerTitle: true,
+        title: Text(
+          'Tickets',
+          style: AppStyles.headLineStyle1,
+        ),
         backgroundColor: AppStyles.bgColor,
       ),
       body: Stack(
