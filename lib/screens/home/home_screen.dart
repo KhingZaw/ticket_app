@@ -92,8 +92,17 @@ class HomeScreen extends StatelessWidget {
                   child: Row(
                       children: ticketList
                           .take(3)
-                          .map((e) => TicketView(
-                                ticket: e,
+                          .map((e) => GestureDetector(
+                                onTap: () {
+                                  var index = ticketList.indexOf(e);
+
+                                  Navigator.pushNamed(
+                                      context, AppRouters.ticketScreen,
+                                      arguments: {"index": index});
+                                },
+                                child: TicketView(
+                                  ticket: e,
+                                ),
                               ))
                           .toList()),
                 ),
@@ -113,7 +122,17 @@ class HomeScreen extends StatelessWidget {
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: hotelList.map((e) => Hotel(hotel: e)).toList(),
+                    children: hotelList
+                        .map((e) => GestureDetector(
+                            onTap: () {
+                              var index = hotelList.indexOf(e);
+
+                              Navigator.pushNamed(
+                                  context, AppRouters.hotelDetail,
+                                  arguments: {"index": index});
+                            },
+                            child: Hotel(hotel: e)))
+                        .toList(),
                   ),
                 ),
               ],

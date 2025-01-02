@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ticket_app/constants/app_styles.dart';
+import 'package:ticket_app/controller/expanded_text_controller.dart';
 import 'package:ticket_app/data/all_json.dart';
 
 class HotelDetail extends StatefulWidget {
@@ -93,10 +95,11 @@ class _HotelDetailState extends State<HotelDetail> {
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                const Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Text(
-                      "In Flutter, scrolling is a feature that allows users to interact with a widget by recognizing gestures. To enable scrolling in Flutter, you can wrap a widget in a Scrollable widget. This widget implements gesture recognition and interactions."),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: ExpandedTextWideget(
+                    text: hotelList[index]["detail"],
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -109,13 +112,13 @@ class _HotelDetailState extends State<HotelDetail> {
                   height: 200.0,
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: 4,
-                      itemBuilder: (context, index) {
+                      itemCount: hotelList[index]["images"].length,
+                      itemBuilder: (context, imageIndex) {
                         return Container(
                           margin: const EdgeInsets.all(16),
                           color: Colors.red,
                           child: Image.asset(
-                              "assets/images/${hotelList[index]["image"]}"),
+                              "assets/images/${hotelList[index]["images"][imageIndex]}"),
                         );
                       }),
                 ),
@@ -124,6 +127,47 @@ class _HotelDetailState extends State<HotelDetail> {
           )
         ],
       ),
+    );
+  }
+}
+
+class ExpandedTextWideget extends StatelessWidget {
+  ExpandedTextWideget({
+    super.key,
+    required this.text,
+  });
+  final ExpandedTextController controller = Get.put(ExpandedTextController());
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+      () {
+        var textWidget = Text(
+          text,
+          maxLines: controller.isExpanded.value ? null : 3,
+          overflow: controller.isExpanded.value
+              ? TextOverflow.visible
+              : TextOverflow.ellipsis,
+        );
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            textWidget,
+            GestureDetector(
+              onTap: () {
+                controller.isExpanded();
+              },
+              child: Text(
+                controller.isExpanded.value ? 'Less' : 'More',
+                style: AppStyles.textStyle.copyWith(
+                  color: AppStyles.primaryColor,
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

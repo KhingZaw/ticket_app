@@ -4,4 +4,5 @@ class AppRouters {
   static const ticketScreen = '/ticket_screen';
   static const hotelScreen = '/hotel_screen';
   static const hotelDetail = '/hotel_detail';
+  static const profileScreen = '/profile_screen';
 }
