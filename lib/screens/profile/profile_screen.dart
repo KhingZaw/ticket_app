@@ -2,7 +2,6 @@ import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:ticket_app/constants/app_styles.dart';
 import 'package:ticket_app/constants/media.dart';
-import 'package:ticket_app/reusable_widgets/text_style_fourth.dart';
 import 'package:ticket_app/reusable_widgets/text_style_third.dart';
 import 'package:ticket_app/screens/profile/widgets/miles_widget.dart';
 

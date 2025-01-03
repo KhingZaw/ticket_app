@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:ticket_app/constants/app_styles.dart';
-import 'package:ticket_app/controller/expanded_text_controller.dart';
 import 'package:ticket_app/data/all_json.dart';
 
 class HotelDetail extends StatefulWidget {
@@ -131,43 +129,48 @@ class _HotelDetailState extends State<HotelDetail> {
   }
 }
 
-class ExpandedTextWideget extends StatelessWidget {
-  ExpandedTextWideget({
+class ExpandedTextWideget extends StatefulWidget {
+  const ExpandedTextWideget({
     super.key,
     required this.text,
   });
-  final ExpandedTextController controller = Get.put(ExpandedTextController());
   final String text;
 
   @override
+  State<ExpandedTextWideget> createState() => _ExpandedTextWidegetState();
+}
+
+class _ExpandedTextWidegetState extends State<ExpandedTextWideget> {
+  bool isExpanded = false;
+  toggleExpansion() {
+    setState(() {
+      isExpanded = !isExpanded;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Obx(
-      () {
-        var textWidget = Text(
-          text,
-          maxLines: controller.isExpanded.value ? null : 3,
-          overflow: controller.isExpanded.value
-              ? TextOverflow.visible
-              : TextOverflow.ellipsis,
-        );
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            textWidget,
-            GestureDetector(
-              onTap: () {
-                controller.isExpanded();
-              },
-              child: Text(
-                controller.isExpanded.value ? 'Less' : 'More',
-                style: AppStyles.textStyle.copyWith(
-                  color: AppStyles.primaryColor,
-                ),
-              ),
+    var textWidget = Text(
+      widget.text,
+      maxLines: isExpanded ? null : 3,
+      overflow: isExpanded ? TextOverflow.visible : TextOverflow.ellipsis,
+    );
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        textWidget,
+        GestureDetector(
+          onTap: () {
+            toggleExpansion();
+          },
+          child: Text(
+            isExpanded ? 'Less' : 'More',
+            style: AppStyles.textStyle.copyWith(
+              color: AppStyles.primaryColor,
             ),
-          ],
-        );
-      },
+          ),
+        ),
+      ],
     );
   }
 }
